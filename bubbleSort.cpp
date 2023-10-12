@@ -1,7 +1,5 @@
 #include "functions.h"
 
-using namespace std;
-
 void bubble(std::vector<int>& vetor) {
     int troca = 0; // Variável para controlar se houve trocas durante a passagem
     int tamanho = vetor.size(); // Obtém o tamanho do vetor

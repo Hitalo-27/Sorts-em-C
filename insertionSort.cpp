@@ -1,7 +1,5 @@
 #include "functions.h"
 
-using namespace std;
-
 void insertion(std::vector<int>& vetor) {
     int tamanho = vetor.size(); // Obtem o tamanho do vetor
 
