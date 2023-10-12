@@ -8,7 +8,7 @@
 #include <chrono>
 #include <cstdlib>
 
-#define TAM 1
+#define TAM 50000
 
 using namespace std;
 
