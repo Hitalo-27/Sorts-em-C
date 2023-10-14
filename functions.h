@@ -7,6 +7,8 @@
 #include <fstream>
 #include <chrono>
 #include <cstdlib>
+#include <random>
+#include <vector>
 
 #define TAM 50000
 
@@ -55,6 +57,28 @@ void show(const std::vector<int>& vetor) {
         std::cout << vetor[i] << "\t";
     }
     std::cout << std::endl;
+}
+
+std::vector<int> generateNumber() {
+    std::random_device rd; // Semente aleatória do dispositivo
+    std::mt19937 mt(rd());
+    
+    int min = 1; // número mínimo permitido na lista
+    int max = 100000; // número máximo permitido na lista
+    int num_elements = TAM; // Número de elementos na lista
+
+    // Crie um vetor para armazenar os números aleatórios
+    std::vector<int> random_numbers;
+
+    // Crie uma distribuição uniforme
+    std::uniform_int_distribution<int> dist(min, max);
+
+    // Gere os números aleatórios e armazene-os no vetor
+    for (int i = 0; i < num_elements; i++) {
+        random_numbers.push_back(dist(mt));
+    }
+
+    return random_numbers;
 }
 
 #endif
