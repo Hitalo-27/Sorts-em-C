@@ -1,7 +1,4 @@
-#include <iostream>
-#include <vector>
-
-#include "functions.h"
+#include "../functions/functions.h"
 
 // Função para dividir o array em torno do pivô
 int partition(std::vector<int>& arr, int low, int high) {
@@ -33,19 +30,27 @@ void quickSort(std::vector<int>& arr, int low, int high) {
 }
 
 int main() {
-    std::vector<int> arr = generateNumber();
+    setlocale(LC_ALL, "pt_BR.UTF-8");
+    std::vector<int> vetor;
+    srand(static_cast<unsigned>(time(nullptr)));
 
-    int n = arr.size();
+    fill(vetor);
+
+    int n = vetor.size();
 
     auto inicio = std::chrono::high_resolution_clock::now();
 
-    quickSort(arr, 0, n - 1);
+    quickSort(vetor, 0, n - 1);
 
     auto fim = std::chrono::high_resolution_clock::now();
-
     auto tempo = std::chrono::duration_cast<std::chrono::milliseconds>(fim - inicio);
 
     std::cout << "O tempo necessario para ordenar todos os numeros foi de: " << tempo.count() << " milissegundos" << std::endl;
 
+    system("pause");
+
+    show(vetor);
+
     return 0;
 }
+

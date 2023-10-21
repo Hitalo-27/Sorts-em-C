@@ -1,8 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
-#include "functions.h"
+#include "../functions/functions.h"
 
 // Função para classificar um balde usando o algoritmo de inserção
 void insertionSort(std::vector<int>& bucket) {
@@ -46,17 +42,24 @@ void bucketSort(std::vector<int>& arr) {
 }
 
 int main() {
-    std::vector<int> arr = generateNumber();
+    setlocale(LC_ALL, "pt_BR.UTF-8");
+    std::vector<int> vetor;
+    srand(static_cast<unsigned>(time(nullptr)));
+
+    fill(vetor);
 
     auto inicio = std::chrono::high_resolution_clock::now();
 
-    bucketSort(arr);
+    bucketSort(vetor);
 
     auto fim = std::chrono::high_resolution_clock::now();
-
     auto tempo = std::chrono::duration_cast<std::chrono::milliseconds>(fim - inicio);
 
     std::cout << "O tempo necessario para ordenar todos os numeros foi de: " << tempo.count() << " milissegundos" << std::endl;
+
+    system("pause");
+
+    show(vetor);
 
     return 0;
 }

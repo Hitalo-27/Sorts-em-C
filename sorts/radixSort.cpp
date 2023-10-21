@@ -1,4 +1,4 @@
-#include "functions.h"
+#include "../functions/functions.h"
 
 // Função para encontrar o maior elemento em um vetor
 int encontrarMaiorElemento(const std::vector<int>& vetor) {

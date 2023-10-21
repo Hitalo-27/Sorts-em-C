@@ -1,4 +1,4 @@
-#include "functions.h"
+#include "../functions/functions.h"
 
 void counting(std::vector<int>& vetor) {
     int tamanho = vetor.size();

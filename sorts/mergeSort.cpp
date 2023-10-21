@@ -1,7 +1,4 @@
-#include <iostream>
-#include <vector>
-
-#include "functions.h"
+#include "../functions/functions.h"
 
 void merge(std::vector<int> &arr, int left, int mid, int right)
 {
@@ -62,19 +59,29 @@ void mergeSort(std::vector<int> &arr, int left, int right){
     }
 }
 
-int main(){
-    std::vector<int> arr = generateNumber();
-    int arrSize = arr.size();
+
+
+int main() {
+    setlocale(LC_ALL, "pt_BR.UTF-8");
+    std::vector<int> vetor;
+    srand(static_cast<unsigned>(time(nullptr)));
+
+    fill(vetor);
+
+    int arrSize = vetor.size();
 
     auto inicio = std::chrono::high_resolution_clock::now();
 
-    mergeSort(arr, 0, arrSize - 1);
+    mergeSort(vetor, 0, arrSize - 1);
 
     auto fim = std::chrono::high_resolution_clock::now();
-
     auto tempo = std::chrono::duration_cast<std::chrono::milliseconds>(fim - inicio);
 
     std::cout << "O tempo necessario para ordenar todos os numeros foi de: " << tempo.count() << " milissegundos" << std::endl;
+
+    system("pause");
+
+    show(vetor);
 
     return 0;
 }

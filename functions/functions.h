@@ -8,16 +8,46 @@
 #include <chrono>
 #include <cstdlib>
 #include <random>
-#include <vector>
+#include <ctime>
 
 #define TAM 50000
 
 using namespace std;
 
+int fillInFile() {
+    // Abra o arquivo para escrita, isso apagará o conteúdo existente
+    std::ofstream arquivo("numeros.txt");
+
+    // Verifique se o arquivo foi aberto com sucesso
+    if (!arquivo.is_open()) {
+        std::cerr << "Erro ao abrir o arquivo." << std::endl;
+        return 1;
+    }
+
+    // Inicialize o gerador de números aleatórios
+    std::srand(static_cast<unsigned>(std::time(nullptr)));
+
+    // Gere e escreva 500 números aleatórios separados por vírgula no arquivo
+    for (int i = 0; i < 500; ++i) {
+        int numero = std::rand() % 1000;  // Gere números aleatórios de 0 a 999 (você pode ajustar o intervalo conforme necessário)
+        arquivo << numero;
+
+        // Adicione uma vírgula a menos no último número
+        if (i < 499) {
+            arquivo << ",";
+        }
+    }
+
+    // Feche o arquivo
+    arquivo.close();
+
+    return 0;
+}
+
 std::vector<int> readFile() {
     std::vector<int> numeros;
 
-    std::ifstream arquivo("../numeros.txt");
+    std::ifstream arquivo("numeros.txt");
 
     if (arquivo.is_open()) {
         int numero;
@@ -42,6 +72,7 @@ std::vector<int> readFile() {
 }
 
 void fill(std::vector<int>& vetor) {
+    fillInFile();
     std::vector<int> numerosDoArquivo = readFile();
 
     while (vetor.size() < TAM) {

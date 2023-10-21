@@ -1,4 +1,4 @@
-#include "functions.h"
+#include "../functions/functions.h"
 
 void bubble(std::vector<int>& vetor) {
     int troca = 0; // Variável para controlar se houve trocas durante a passagem
