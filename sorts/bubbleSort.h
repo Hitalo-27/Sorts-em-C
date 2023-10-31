@@ -14,25 +14,16 @@ void bubble(std::vector<int>& vetor) {
     }
 }
 
-int main() {
-    setlocale(LC_ALL, "pt_BR.UTF-8");
-    std::vector<int> vetor;
-    srand(static_cast<unsigned>(time(nullptr)));
+SortResult runBubbleSort(std::vector<int>& vetorBubble) {
+    auto inicioBubble = std::chrono::high_resolution_clock::now();
+    bubble(vetorBubble);
+    auto fimBubble = std::chrono::high_resolution_clock::now();
+    long long tempoBubble = std::chrono::duration_cast<std::chrono::milliseconds>(fimBubble - inicioBubble).count();
 
-    fill(vetor);
+    SortResult result;
+    result.name = "Bubble Sort";
+    result.sortedArray = vetorBubble;
+    result.timeMillis = tempoBubble;
 
-    auto inicio = std::chrono::high_resolution_clock::now();
-
-    bubble(vetor);
-
-    auto fim = std::chrono::high_resolution_clock::now();
-    auto tempo = std::chrono::duration_cast<std::chrono::milliseconds>(fim - inicio);
-
-    std::cout << "O tempo necessario para ordenar todos os numeros foi de: " << tempo.count() << " milissegundos" << std::endl;
-
-    system("pause");
-
-    show(vetor);
-
-    return 0;
+    return result;
 }

@@ -29,28 +29,17 @@ void quickSort(std::vector<int>& arr, int low, int high) {
     }
 }
 
-int main() {
-    setlocale(LC_ALL, "pt_BR.UTF-8");
-    std::vector<int> vetor;
-    srand(static_cast<unsigned>(time(nullptr)));
+SortResult runQuickSort(std::vector<int>& vetorQuick) {
+    int n = vetorQuick.size();
+    auto inicioQuick = std::chrono::high_resolution_clock::now();
+    quickSort(vetorQuick, 0, n - 1);
+    auto fimQuick = std::chrono::high_resolution_clock::now();
+    long long tempoQuick = std::chrono::duration_cast<std::chrono::milliseconds>(fimQuick - inicioQuick).count();
 
-    fill(vetor);
+    SortResult result;
+    result.name = "Quick Sort";
+    result.sortedArray = vetorQuick;
+    result.timeMillis = tempoQuick;
 
-    int n = vetor.size();
-
-    auto inicio = std::chrono::high_resolution_clock::now();
-
-    quickSort(vetor, 0, n - 1);
-
-    auto fim = std::chrono::high_resolution_clock::now();
-    auto tempo = std::chrono::duration_cast<std::chrono::milliseconds>(fim - inicio);
-
-    std::cout << "O tempo necessario para ordenar todos os numeros foi de: " << tempo.count() << " milissegundos" << std::endl;
-
-    system("pause");
-
-    show(vetor);
-
-    return 0;
+    return result;
 }
-

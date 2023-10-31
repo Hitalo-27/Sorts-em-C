@@ -16,25 +16,16 @@ void selection(std::vector<int>& vetor) {
     }
 }
 
-int main() {
-    setlocale(LC_ALL, "pt_BR.UTF-8");
-    std::vector<int> vetor;
-    srand(static_cast<unsigned>(time(nullptr)));
+SortResult runSelectionSort(std::vector<int>& vetorSelection) {
+    auto inicioSelection = std::chrono::high_resolution_clock::now();
+    selection(vetorSelection);
+    auto fimSelection = std::chrono::high_resolution_clock::now();
+    long long tempoSelection = std::chrono::duration_cast<std::chrono::milliseconds>(fimSelection - inicioSelection).count();
 
-    fill(vetor);
+    SortResult result;
+    result.name = "Selection Sort";
+    result.sortedArray = vetorSelection;
+    result.timeMillis = tempoSelection;
 
-    auto inicio = std::chrono::high_resolution_clock::now();
-
-    selection(vetor);
-
-    auto fim = std::chrono::high_resolution_clock::now();
-    auto tempo = std::chrono::duration_cast<std::chrono::milliseconds>(fim - inicio);
-
-    std::cout << "O tempo necessario para ordenar todos os numeros foi de: " << tempo.count() << " milissegundos" << std::endl;
-
-    system("pause");
-
-    show(vetor);
-
-    return 0;
+    return result;
 }

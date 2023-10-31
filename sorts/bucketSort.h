@@ -41,25 +41,16 @@ void bucketSort(std::vector<int>& arr) {
     }
 }
 
-int main() {
-    setlocale(LC_ALL, "pt_BR.UTF-8");
-    std::vector<int> vetor;
-    srand(static_cast<unsigned>(time(nullptr)));
+SortResult runBucketSort(std::vector<int>& vetorBucket) {
+    auto inicioBucket = std::chrono::high_resolution_clock::now();
+    bucketSort(vetorBucket);
+    auto fimBucket = std::chrono::high_resolution_clock::now();
+    long long tempoBucket = std::chrono::duration_cast<std::chrono::milliseconds>(fimBucket - inicioBucket).count();
 
-    fill(vetor);
+    SortResult result;
+    result.name = "Bucket Sort";
+    result.sortedArray = vetorBucket;
+    result.timeMillis = tempoBucket;
 
-    auto inicio = std::chrono::high_resolution_clock::now();
-
-    bucketSort(vetor);
-
-    auto fim = std::chrono::high_resolution_clock::now();
-    auto tempo = std::chrono::duration_cast<std::chrono::milliseconds>(fim - inicio);
-
-    std::cout << "O tempo necessario para ordenar todos os numeros foi de: " << tempo.count() << " milissegundos" << std::endl;
-
-    system("pause");
-
-    show(vetor);
-
-    return 0;
+    return result;
 }

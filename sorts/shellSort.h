@@ -17,28 +17,17 @@ void shellSort(std::vector<int> &arr, int n) {
     }
 }
 
+SortResult runShellSort(std::vector<int>& vetorShell) {
+    int n = vetorShell.size();
+    auto inicioShell = std::chrono::high_resolution_clock::now();
+    shellSort(vetorShell, n);
+    auto fimShell = std::chrono::high_resolution_clock::now();
+    long long tempoShell = std::chrono::duration_cast<std::chrono::milliseconds>(fimShell - inicioShell).count();
 
-int main() {
-    setlocale(LC_ALL, "pt_BR.UTF-8");
-    std::vector<int> vetor;
-    srand(static_cast<unsigned>(time(nullptr)));
+    SortResult result;
+    result.name = "Shell Sort";
+    result.sortedArray = vetorShell;
+    result.timeMillis = tempoShell;
 
-    fill(vetor);
-
-    int n = vetor.size();
-
-    auto inicio = std::chrono::high_resolution_clock::now();
-
-    shellSort(vetor, n);
-
-    auto fim = std::chrono::high_resolution_clock::now();
-    auto tempo = std::chrono::duration_cast<std::chrono::milliseconds>(fim - inicio);
-
-    std::cout << "O tempo necessario para ordenar todos os numeros foi de: " << tempo.count() << " milissegundos" << std::endl;
-
-    system("pause");
-
-    show(vetor);
-
-    return 0;
+    return result;
 }

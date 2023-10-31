@@ -18,25 +18,16 @@ void insertion(std::vector<int>& vetor) {
 }
 
 
-int main() {
-    setlocale(LC_ALL, "pt_BR.UTF-8");
-    std::vector<int> vetor;
-    srand(static_cast<unsigned>(time(nullptr)));
+SortResult runInsertionSort(std::vector<int>& vetorInsertion) {
+    auto inicioInsertion = std::chrono::high_resolution_clock::now();
+    insertion(vetorInsertion);
+    auto fimInsertion = std::chrono::high_resolution_clock::now();
+    long long tempoInsertion = std::chrono::duration_cast<std::chrono::milliseconds>(fimInsertion - inicioInsertion).count();
 
-    fill(vetor);
+    SortResult result;
+    result.name = "Insertion Sort";
+    result.sortedArray = vetorInsertion;
+    result.timeMillis = tempoInsertion;
 
-    auto inicio = std::chrono::high_resolution_clock::now();
-
-    insertion(vetor);
-
-    auto fim = std::chrono::high_resolution_clock::now();
-    auto tempo = std::chrono::duration_cast<std::chrono::milliseconds>(fim - inicio);
-
-    std::cout << "O tempo necessario para ordenar todos os numeros foi de: " << tempo.count() << " milissegundos" << std::endl;
-
-    system("pause");
-
-    show(vetor);
-
-    return 0;
+    return result;
 }

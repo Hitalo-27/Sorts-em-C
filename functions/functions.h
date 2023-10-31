@@ -9,10 +9,17 @@
 #include <cstdlib>
 #include <random>
 #include <ctime>
+#include <map>
 
 #define TAM 50000
 
 using namespace std;
+
+struct SortResult {
+    std::string name;
+    std::vector<int> sortedArray;
+    long long timeMillis;
+};
 
 int fillInFile() {
     // Abra o arquivo para escrita, isso apagará o conteúdo existente

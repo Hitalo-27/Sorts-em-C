@@ -44,25 +44,16 @@ void radix(std::vector<int>& vetor) {
     }
 }
 
-int main() {
-    setlocale(LC_ALL, "pt_BR.UTF-8");
-    std::vector<int> vetor;
-    srand(static_cast<unsigned>(time(nullptr)));
+SortResult runRadixSort(std::vector<int>& vetorRadix) {
+    auto inicioRadix = std::chrono::high_resolution_clock::now();
+    radix(vetorRadix);
+    auto fimRadix = std::chrono::high_resolution_clock::now();
+    long long tempoRadix = std::chrono::duration_cast<std::chrono::milliseconds>(fimRadix - inicioRadix).count();
 
-    fill(vetor);
+    SortResult result;
+    result.name = "Radix Sort";
+    result.sortedArray = vetorRadix;
+    result.timeMillis = tempoRadix;
 
-    auto inicio = std::chrono::high_resolution_clock::now();
-
-    radix(vetor);
-
-    auto fim = std::chrono::high_resolution_clock::now();
-    auto tempo = std::chrono::duration_cast<std::chrono::milliseconds>(fim - inicio);
-
-    std::cout << "O tempo necessario para ordenar todos os numeros foi de: " << tempo.count() << " milissegundos" << std::endl;
-
-    system("pause");
-
-    show(vetor);
-
-    return 0;
+    return result;
 }
